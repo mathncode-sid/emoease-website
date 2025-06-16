@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmoEase - Your Health, Your Wealth</title>
+    <meta name="description" content="EmoEase is a safe, warm, and empowering space that champions men's emotional wellbeing. Join our community of growth and healing." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="ee-header">
+      <div class="ee-container">
+        <div class="ee-logo">
+          <img src="assets/logo.png" alt="EmoEase Logo" />
+          EmoEase
+        </div>
+        <button class="ee-nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="ee-nav" id="main-nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#resources">Resources</a>
+          <a href="#contact">Contact</a>
+          <a href="#join" class="ee-btn">Join Community</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="ee-hero">
+        <div class="ee-container">
+          <h1>Your Health, Your Wealth</h1>
+          <p>
+            EmoEase is a safe, warm, and empowering space that champions men's emotional wellbeing.<br>
+            Join our community of growth and healing.
+          </p>
+          <a href="#join" class="ee-btn">Join the Community</a>
+        </div>
+      </section>
+
+      <section class="ee-about" id="about">
+        <div class="ee-container">
+          <h2>About EmoEase</h2>
+          <p>
+            We believe every man deserves a space to share, heal, and grow. EmoEase is dedicated to breaking the stigma around men's mental health by providing resources, support, and a welcoming community.
+          </p>
+        </div>
+      </section>
+
+      <section class="ee-community" id="community">
+        <div class="ee-container">
+          <h2>Our Community</h2>
+          <ul>
+            <li>Peer support groups</li>
+            <li>Expert-led workshops</li>
+            <li>Resource library</li>
+            <li>Safe, anonymous discussions</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="ee-features">
+        <div class="ee-container">
+          <h2>Why Choose EmoEase?</h2>
+          <div class="ee-feature-card">
+            <div class="ee-feature-icon"></div>
+            <h3>Safe Space</h3>
+            <p>A judgment-free environment where men can express emotions freely and authentically.</p>
+          </div>
+          <div class="ee-feature-card">
+            <div class="ee-feature-icon"></div>
+            <h3>Brotherhood</h3>
+            <p>Connect with like-minded men who understand your journey and support your growth.</p>
+          </div>
+          <div class="ee-feature-card">
+            <div class="ee-feature-icon"></div>
+            <h3>Growth</h3>
+            <p>Develop emotional intelligence and resilience through proven programs and peer support.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ee-join" id="join">
+        <div class="ee-container">
+          <h2>Ready to Join?</h2>
+          <p>
+            Become part of a movement that values your emotional wellbeing. Sign up to receive updates and connect with others.
+          </p>
+          <form class="ee-form" autocomplete="off">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" class="ee-btn">Sign Up</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ee-footer">
+      <div class="ee-container">
+        <div class="ee-footer-col">
+          <div class="ee-logo">
+            <img src="assets/logo.png" alt="EmoEase Logo" />
+            EmoEase
+          </div>
+          <p>A safe, warm, and empowering space that champions men's emotional wellbeing. Helping men feel, heal, and grow — without judgment.</p>
+          <p><em>"You are not alone. Ever."</em></p>
+        </div>
+        <div class="ee-footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="ee-footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="#support">Support Groups</a></li>
+            <li><a href="#stories">Share Your Story</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+            <li><a href="#follow">Follow Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ee-container" style="justify-content: flex-end; margin-top: 1rem;">
+        <span>Your Health, Your Wealth</span>
+      </div>
+      <div class="ee-container" style="justify-content: flex-start;">
+        <span>&copy; 2025 EmoEase. All rights reserved.</span>
+      </div>
+    </footer>
+    <script>
+      // Simple form handler (no backend)
+      document.querySelector('.ee-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for joining EmoEase!');
+        this.reset();
+      });
+
+      const navToggle = document.querySelector('.ee-nav-toggle');
+      const nav = document.getElementById('main-nav');
+      navToggle.addEventListener('click', function() {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !expanded);
+        nav.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>
