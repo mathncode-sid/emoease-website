@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Men's Mental Health</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="dashboard.html" class="logo">Men's Mental Health Admin</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                        <li><a href="posts.html">Blog Posts</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">Welcome back, <span id="adminName">Admin</span></p>
+
+            <div id="alert-container"></div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-2xl);">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Posts</h3>
+                    </div>
+                    <div style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-accent);" id="totalPosts">
+                        <span class="loading"></span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Activity</h3>
+                    </div>
+                    <p style="color: var(--color-text-secondary);">Last login: <span id="lastLogin">Today</span></p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Quick Actions</h3>
+                    </div>
+                    <div class="flex flex-col gap-sm">
+                        <a href="posts.html?action=create" class="btn btn-primary btn-sm">Create New Post</a>
+                        <a href="posts.html" class="btn btn-secondary btn-sm">Manage Posts</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Recent Posts</h3>
+                    <a href="posts.html" class="btn btn-secondary btn-sm">View All</a>
+                </div>
+                <div id="recentPosts">
+                    <div class="loading" style="margin: var(--spacing-lg) auto;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (!isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load dashboard data
+            loadDashboardData();
+            displayAdminName();
+        });
+
+        function displayAdminName() {
+            const adminUser = JSON.parse(localStorage.getItem('adminUser') || '{}');
+            const adminNameEl = document.getElementById('adminName');
+            if (adminNameEl && adminUser.name) {
+                adminNameEl.textContent = adminUser.name;
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                // Load posts count and recent posts
+                const response = await fetch('/api/posts');
+                const result = await response.json();
+
+                if (result.success) {
+                    const posts = result.data.posts;
+                    
+                    // Update total posts count
+                    document.getElementById('totalPosts').textContent = posts.length;
+                    
+                    // Display recent posts (last 5)
+                    const recentPosts = posts.slice(0, 5);
+                    displayRecentPosts(recentPosts);
+                } else {
+                    showAlert('Error loading dashboard data', 'error');
+                }
+            } catch (error) {
+                console.error('Dashboard load error:', error);
+                showAlert('Error loading dashboard data', 'error');
+            }
+        }
+
+        function displayRecentPosts(posts) {
+            const container = document.getElementById('recentPosts');
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<p style="color: var(--color-text-secondary); text-align: center; padding: var(--spacing-lg);">No posts yet. <a href="posts.html?action=create" style="color: var(--color-accent);">Create your first post</a></p>';
+                return;
+            }
+
+            const postsHTML = posts.map(post => `
+                <div style="padding: var(--spacing-md); border-bottom: 1px solid var(--color-border); last-child:border-bottom: none;">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: var(--spacing-xs);">${escapeHtml(post.title)}</h4>
+                            <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm);">
+                                By ${escapeHtml(post.author)} • ${formatDate(post.created_at)}
+                            </p>
+                        </div>
+                        <div class="flex gap-sm">
+                            <a href="posts.html?action=edit&id=${post.id}" class="btn btn-secondary btn-sm">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = postsHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-error';
+            alertContainer.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
+        }
+
+        function logout() {
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
