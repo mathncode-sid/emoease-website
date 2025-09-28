@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Mental Health - Breaking the Silence</title>
+    <meta name="description" content="Supporting men's mental health through advocacy, resources, and community. Breaking the stigma around men seeking help.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Men's Mental Health</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Breaking the Silence Around Men's Mental Health</h1>
+            <p class="hero-subtitle">
+                Supporting men in their journey toward mental wellness through advocacy, 
+                resources, and community. It's okay to not be okay.
+            </p>
+            <div class="flex justify-center gap-lg">
+                <a href="blog.html" class="btn btn-primary">Read Our Blog</a>
+                <a href="#resources" class="btn btn-secondary">Find Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+             Latest Blog Posts Section 
+            <section id="latest-posts">
+                <h2 class="section-title">Latest Articles</h2>
+                <p class="section-subtitle">
+                    Insights, stories, and resources to support men's mental health journey
+                </p>
+                
+                <div id="latestPosts" class="posts-grid">
+                    <div class="loading" style="margin: var(--spacing-lg) auto;"></div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="blog.html" class="btn btn-primary">View All Articles</a>
+                </div>
+            </section>
+
+             About Section 
+            <section id="about" style="margin-top: var(--spacing-3xl);">
+                <h2 class="section-title">Our Mission</h2>
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: var(--font-size-lg); color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--spacing-xl);">
+                        We believe that mental health is just as important as physical health, and that men deserve 
+                        support, understanding, and resources to navigate their mental wellness journey without stigma or judgment.
+                    </p>
+                    <p style="color: var(--color-text-secondary); line-height: 1.7;">
+                        Through advocacy, education, and community building, we're working to create a world where 
+                        men feel empowered to seek help, share their experiences, and support one another in times of need.
+                    </p>
+                </div>
+            </section>
+
+             Resources Section 
+            <section id="resources" style="margin-top: var(--spacing-3xl);">
+                <h2 class="section-title">Mental Health Resources</h2>
+                <p class="section-subtitle">
+                    Professional help and support when you need it most
+                </p>
+                
+                <div class="posts-grid">
+                    <div class="card">
+                        <h3 class="card-title">Crisis Support</h3>
+                        <div class="card-content">
+                            <p><strong>National Suicide Prevention Lifeline:</strong><br>
+                            <a href="tel:988" style="color: var(--color-accent); font-weight: 600;">988</a></p>
+                            <p><strong>Crisis Text Line:</strong><br>
+                            Text HOME to <a href="sms:741741" style="color: var(--color-accent); font-weight: 600;">741741</a></p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Professional Help</h3>
+                        <div class="card-content">
+                            <p><strong>Psychology Today:</strong><br>
+                            Find therapists in your area</p>
+                            <p><strong>BetterHelp:</strong><br>
+                            Online therapy and counseling</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Support Groups</h3>
+                        <div class="card-content">
+                            <p><strong>Men's Mental Health Support:</strong><br>
+                            Local and online support groups</p>
+                            <p><strong>NAMI:</strong><br>
+                            National Alliance on Mental Illness</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             Contact Section 
+            <section id="contact" style="margin-top: var(--spacing-3xl);">
+                <h2 class="section-title">Get In Touch</h2>
+                <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xl);">
+                        Have questions, suggestions, or want to share your story? We'd love to hear from you.
+                    </p>
+                    <div class="flex justify-center gap-lg">
+                        <a href="mailto:contact@mensmentalhealth.org" class="btn btn-primary">Send Email</a>
+                        <a href="blog.html" class="btn btn-secondary">Read Stories</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Men's Mental Health</h3>
+                <p>Breaking the silence, building support, creating change.</p>
+                <p style="margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
+                    &copy; 2025 Men's Mental Health Organization. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLatestPosts();
+        });
+
+        async function loadLatestPosts() {
+            try {
+                const response = await fetch('/api/posts');
+                const result = await response.json();
+
+                if (result.success) {
+                    const posts = result.data.posts.slice(0, 3); // Show latest 3 posts
+                    displayLatestPosts(posts);
+                } else {
+                    document.getElementById('latestPosts').innerHTML = 
+                        '<p style="color: var(--color-text-secondary); text-align: center;">No articles available yet.</p>';
+                }
+            } catch (error) {
+                console.error('Load posts error:', error);
+                document.getElementById('latestPosts').innerHTML = 
+                    '<p style="color: var(--color-text-secondary); text-align: center;">Error loading articles.</p>';
+            }
+        }
+
+        function displayLatestPosts(posts) {
+            const container = document.getElementById('latestPosts');
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<p style="color: var(--color-text-secondary); text-align: center;">No articles available yet.</p>';
+                return;
+            }
+
+            const postsHTML = posts.map(post => `
+                <article class="card">
+                    <h3 class="card-title">
+                        <a href="post.html?id=${post.id}" style="color: inherit; text-decoration: none;">
+                            ${escapeHtml(post.title)}
+                        </a>
+                    </h3>
+                    <div class="card-meta">
+                        By ${escapeHtml(post.author)} • ${formatDate(post.created_at)}
+                    </div>
+                    <div class="card-content">
+                        <p>${escapeHtml(post.content.substring(0, 200))}${post.content.length > 200 ? '...' : ''}</p>
+                        <a href="post.html?id=${post.id}" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
+                            Read More
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+
+            container.innerHTML = postsHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
