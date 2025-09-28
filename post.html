@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - Men's Mental Health</title>
+    <meta name="description" content="Read this article about men's mental health and wellness.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Men's Mental Health</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#resources">Resources</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div style="margin-bottom: var(--spacing-lg);">
+                <a href="blog.html" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">
+                    ← Back to Blog
+                </a>
+            </div>
+
+            <article id="postContent">
+                <div class="loading" style="margin: var(--spacing-lg) auto;"></div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Men's Mental Health</h3>
+                <p>Breaking the silence, building support, creating change.</p>
+                <p style="margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
+                    &copy; 2025 Men's Mental Health Organization. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+            
+            if (postId) {
+                loadPost(postId);
+            } else {
+                document.getElementById('postContent').innerHTML = 
+                    '<p style="color: var(--color-text-secondary); text-align: center;">Post not found.</p>';
+            }
+        });
+
+        async function loadPost(id) {
+            try {
+                const response = await fetch(`/api/posts/${id}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    displayPost(result.data.post);
+                } else {
+                    document.getElementById('postContent').innerHTML = 
+                        '<p style="color: var(--color-text-secondary); text-align: center;">Post not found.</p>';
+                }
+            } catch (error) {
+                console.error('Load post error:', error);
+                document.getElementById('postContent').innerHTML = 
+                    '<p style="color: var(--color-text-secondary); text-align: center;">Error loading post.</p>';
+            }
+        }
+
+        function displayPost(post) {
+            document.title = `${post.title} - Men's Mental Health`;
+            
+            const container = document.getElementById('postContent');
+            container.innerHTML = `
+                <header class="post-header">
+                    <h1 class="post-title">${escapeHtml(post.title)}</h1>
+                    <div class="post-meta">
+                        By ${escapeHtml(post.author)} • ${formatDate(post.created_at)}
+                        ${post.updated_at !== post.created_at ? ` • Updated ${formatDate(post.updated_at)}` : ''}
+                    </div>
+                </header>
+                
+                <div class="post-content">
+                    ${formatPostContent(post.content)}
+                </div>
+            `;
+        }
+
+        function formatPostContent(content) {
+            // Simple formatting: convert line breaks to paragraphs
+            return content
+                .split('\n\n')
+                .map(paragraph => paragraph.trim())
+                .filter(paragraph => paragraph.length > 0)
+                .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
+                .join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
