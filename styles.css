@@ -79,11 +79,24 @@ body {
   align-items: center;
 }
 
+/* Added logo styles for image and text combination */
 .logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
   font-size: var(--font-size-xl);
   font-weight: 700;
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.logo-image {
+  height: 50px;
+  width: auto;
+}
+
+.logo-text {
+  color: var(--color-accent);
 }
 
 .nav-links {
@@ -149,6 +162,165 @@ body {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Added founder section styles */
+.founder-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.founder-content {
+  background-color: var(--color-surface);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.founder-name {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-lg);
+}
+
+.founder-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+/* Added mission section styles */
+.mission-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mission-intro {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+}
+
+.mission-list {
+  list-style: none;
+  margin-bottom: var(--spacing-xl);
+  padding: 0;
+}
+
+.mission-list li {
+  font-size: var(--font-size-lg);
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+}
+
+.mission-description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+/* Added timeline styles for 2024 achievements */
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: var(--spacing-2xl);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-accent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: calc(-1 * var(--spacing-2xl) - 6px);
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 3px solid var(--color-background);
+}
+
+.timeline-content {
+  background-color: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.timeline-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.timeline-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+/* Added investment section styles */
+.investment-section {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.investment-benefits,
+.investment-actions {
+  background-color: var(--color-surface);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.investment-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+.investment-list {
+  list-style: none;
+  padding: 0;
+}
+
+.investment-list li {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+  position: relative;
+}
+
+.investment-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 /* Cards */
@@ -325,6 +497,8 @@ body {
 
   .nav-links {
     gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .hero-title {
@@ -345,6 +519,23 @@ body {
 
   .post-content {
     font-size: var(--font-size-base);
+  }
+
+  /* Added responsive styles for new sections */
+  .timeline {
+    padding-left: var(--spacing-xl);
+  }
+
+  .timeline-marker {
+    left: calc(-1 * var(--spacing-xl) - 6px);
+  }
+
+  .investment-section {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-image {
+    height: 40px;
   }
 }
 
