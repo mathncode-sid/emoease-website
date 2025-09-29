@@ -159,6 +159,4 @@ For questions or partnership opportunities, please contact us at emoease23@gmail
 ---
 
 **EmoEase** - Breaking the silence, building support, creating change.
-\`\`\`
 
-```json file="" isHidden
