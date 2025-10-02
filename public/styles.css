@@ -537,6 +537,15 @@ body {
   .logo-image {
     height: 40px;
   }
+
+  /* Added responsive styles for team grid */
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-member-image {
+    height: 250px;
+  }
 }
 
 /* Utility Classes */
@@ -587,4 +596,64 @@ body {
 }
 .gap-lg {
   gap: var(--spacing-lg);
+}
+
+/* Added team member card styles with image support */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.team-member-card {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.team-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.team-member-info {
+  padding: var(--spacing-xl);
+}
+
+.team-member-name {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.team-member-role {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-md);
+}
+
+.team-member-bio {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
 }
