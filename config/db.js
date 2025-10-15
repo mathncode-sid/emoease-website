@@ -33,6 +33,18 @@ export function initDatabase() {
     )
   `)
 
+  // Create users table for community members
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
+
   // Create posts table
   db.exec(`
     CREATE TABLE IF NOT EXISTS posts (
@@ -42,6 +54,25 @@ export function initDatabase() {
       author TEXT NOT NULL,
       createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
       updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
+
+  // Create user_posts table for community submissions
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS user_posts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      content TEXT NOT NULL,
+      excerpt TEXT,
+      category TEXT NOT NULL,
+      tags TEXT, -- JSON string of tags array
+      author TEXT NOT NULL,
+      user_id INTEGER NOT NULL,
+      status TEXT DEFAULT 'pending', -- pending, approved, rejected
+      admin_feedback TEXT,
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     )
   `)
 
