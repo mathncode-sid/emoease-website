@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard - EmoEase</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-section">
+          <img src="/images/emoease-logo.png" alt="EmoEase Logo">
+          <div class="brand-text">
+            <h1>EmoEase</h1>
+            <p class="tagline">Your Health, Your Wealth</p>
+          </div>
+        </div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about.html">About</a>
+          <a href="/programs.html">Programs</a>
+          <a href="/team.html">Team</a>
+          <a href="/blog.html">Blog</a>
+          <a href="/contact.html">Contact</a>
+          <a href="#" id="logout-btn" style="display: none;" class="logout-link">Logout</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h2>Community Dashboard</h2>
+        <p>Share your story and contribute to mental health awareness</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Login/Register Section -->
+      <section id="auth-section" class="auth-section">
+        <div class="auth-container">
+          <!-- Login Form -->
+          <div class="auth-form" id="login-form">
+            <h2>Community Access</h2>
+            <p>Join our community to share your mental health journey</p>
+            <form id="login">
+              <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+              </div>
+              <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+              <p class="form-switch">Don't have an account? <a href="#" id="show-register">Join Community</a></p>
+            </form>
+          </div>
+
+          <!-- Register Form -->
+          <div class="auth-form" id="register-form" style="display: none;">
+            <h2>Join EmoEase Community</h2>
+            <p>Become a contributor and help others on their mental health journey</p>
+            <form id="register">
+              <div class="form-group">
+                <label for="register-name">Full Name</label>
+                <input type="text" id="register-name" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" required placeholder="your@email.com">
+              </div>
+              <div class="form-group">
+                <label for="register-password">Password (min 6 characters)</label>
+                <input type="password" id="register-password" required minlength="6">
+              </div>
+              <button type="submit" class="btn btn-primary">Join Community</button>
+              <p class="form-switch">Already have an account? <a href="#" id="show-login">Login</a></p>
+            </form>
+          </div>
+        </div>
+        <div id="auth-message" class="message"></div>
+      </section>
+
+      <!-- User Dashboard (hidden until logged in) -->
+      <section id="user-dashboard" style="display: none;">
+        <div class="dashboard-header">
+          <h2>Welcome to Your Dashboard</h2>
+          <p>Share your experiences and help build our community knowledge base</p>
+        </div>
+
+        <!-- Create Post Form -->
+        <div class="post-form-container">
+          <h3>Share Your Story</h3>
+          <p>Write about your mental health journey, tips, or insights to help others</p>
+          <form id="user-post-form">
+            <div class="form-group">
+              <label for="user-post-title">Post Title</label>
+              <input type="text" id="user-post-title" required placeholder="Give your post a compelling title...">
+            </div>
+            <div class="form-group">
+              <label for="user-post-category">Category</label>
+              <select id="user-post-category" required>
+                <option value="">Select a category</option>
+                <option value="personal-story">Personal Story</option>
+                <option value="tips-advice">Tips & Advice</option>
+                <option value="mental-health-awareness">Mental Health Awareness</option>
+                <option value="wellness-lifestyle">Wellness & Lifestyle</option>
+                <option value="community-support">Community Support</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="user-post-content">Your Story</label>
+              <textarea id="user-post-content" rows="12" required placeholder="Share your thoughts, experiences, or advice. Your story matters and can help others..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="user-post-tags">Tags (optional)</label>
+              <input type="text" id="user-post-tags" placeholder="anxiety, depression, wellness, self-care (comma separated)">
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Submit for Review</button>
+              <button type="button" class="btn btn-secondary" id="clear-form">Clear Form</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="user-post-message" class="message"></div>
+
+        <!-- User's Posts List -->
+        <div class="user-posts-list">
+          <h3>Your Submissions</h3>
+          <p>Track the status of your blog post submissions</p>
+          
+          <!-- Filter Tabs -->
+          <div class="post-status-tabs">
+            <button class="tab-btn active" data-status="all">All Posts</button>
+            <button class="tab-btn" data-status="pending">Pending Review</button>
+            <button class="tab-btn" data-status="approved">Approved</button>
+            <button class="tab-btn" data-status="rejected">Rejected</button>
+          </div>
+
+          <div id="user-posts-container">
+            <p class="loading">Loading your posts...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>EmoEase</h3>
+          <p>Empowering young men through holistic wellness, breaking barriers, and building connections.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <p><a href="/">Home</a></p>
+          <p><a href="/about.html">About</a></p>
+          <p><a href="/programs.html">Programs</a></p>
+          <p><a href="/blog.html">Blog</a></p>
+        </div>
+        <div class="footer-section">
+          <h3>Get Involved</h3>
+          <p><a href="/contact.html">Contact Us</a></p>
+          <p><a href="/team.html">Our Team</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 EmoEase. All rights reserved.</p>
+        <p>Your Health, Your Wealth</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
