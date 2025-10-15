@@ -6,6 +6,7 @@ import { fileURLToPath } from "url"
 import { initDatabase } from "./config/db.js"
 import adminRoutes from "./routes/adminRoutes.js"
 import postRoutes from "./routes/postRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 import { errorHandler } from "./middleware/errorHandler.js"
 
 // Load environment variables
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, "public")))
 // API Routes
 app.use("/api/admin", adminRoutes)
 app.use("/api/posts", postRoutes)
+app.use("/api/users", userRoutes)
 
 // Root route - serve main page
 app.get("/", (req, res) => {
