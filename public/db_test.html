@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Test - EmoEase</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        button { padding: 10px 15px; margin: 5px; background: #4a7ba7; color: white; border: none; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>EmoEase Database Test</h1>
+    
+    <div class="test-section">
+        <h2>User Registration Test</h2>
+        <input type="text" id="reg-name" placeholder="Full Name">
+        <input type="email" id="reg-email" placeholder="Email">
+        <input type="password" id="reg-password" placeholder="Password">
+        <button onclick="testRegister()">Register User</button>
+        <div id="reg-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>User Login Test</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="testLogin()">Login User</button>
+        <div id="login-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Post Submission Test</h2>
+        <input type="text" id="post-title" placeholder="Post Title">
+        <select id="post-category">
+            <option value="personal-story">Personal Story</option>
+            <option value="tips-advice">Tips & Advice</option>
+            <option value="mental-health-awareness">Mental Health Awareness</option>
+        </select>
+        <textarea id="post-content" placeholder="Post Content" rows="4" style="width: 400px;"></textarea>
+        <button onclick="testPostSubmission()">Submit Post</button>
+        <div id="post-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Admin Functions Test</h2>
+        <button onclick="testGetSubmissions()">Get All Submissions</button>
+        <div id="admin-result" class="result"></div>
+    </div>
+
+    <script>
+        let userToken = null;
+
+        async function testRegister() {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            
+            try {
+                const response = await fetch('/api/users/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                
+                const data = await response.json();
+                const resultDiv = document.getElementById('reg-result');
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.textContent = `Success: ${data.message}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('reg-result').innerHTML = `<span class="error">Network Error: ${error.message}</span>`;
+            }
+        }
+
+        async function testLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const response = await fetch('/api/users/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                const resultDiv = document.getElementById('login-result');
+                
+                if (response.ok) {
+                    userToken = data.token;
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `Success: ${data.message}<br>Token: ${data.token.substring(0, 20)}...<br>User: ${JSON.stringify(data.user)}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('login-result').innerHTML = `<span class="error">Network Error: ${error.message}</span>`;
+            }
+        }
+
+        async function testPostSubmission() {
+            if (!userToken) {
+                document.getElementById('post-result').innerHTML = '<span class="error">Please login first</span>';
+                return;
+            }
+
+            const title = document.getElementById('post-title').value;
+            const category = document.getElementById('post-category').value;
+            const content = document.getElementById('post-content').value;
+            
+            try {
+                const response = await fetch('/api/users/posts', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userToken}`
+                    },
+                    body: JSON.stringify({ title, category, content, tags: ['test'] })
+                });
+                
+                const data = await response.json();
+                const resultDiv = document.getElementById('post-result');
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `Success: ${data.message}<br>Post ID: ${data.post.id}`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('post-result').innerHTML = `<span class="error">Network Error: ${error.message}</span>`;
+            }
+        }
+
+        async function testGetSubmissions() {
+            // This requires admin token, but let's test the endpoint
+            try {
+                const response = await fetch('/api/admin/submissions');
+                const data = await response.json();
+                const resultDiv = document.getElementById('admin-result');
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `Found ${data.submissions.length} submissions`;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.textContent = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                document.getElementById('admin-result').innerHTML = `<span class="error">Network Error: ${error.message}</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
