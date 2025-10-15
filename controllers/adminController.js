@@ -87,3 +87,112 @@ export async function login(req, res, next) {
     next(error)
   }
 }
+
+/**
+ * Get all user submissions for admin review
+ */
+export function getUserSubmissions(req, res, next) {
+  try {
+    const { status } = req.query
+
+    let query = `
+      SELECT up.*, u.email as user_email 
+      FROM user_posts up 
+      JOIN users u ON up.user_id = u.id
+    `
+    let params = []
+
+    if (status && status !== 'all') {
+      query += " WHERE up.status = ?"
+      params.push(status)
+    }
+
+    query += " ORDER BY up.createdAt DESC"
+
+    const submissions = db.prepare(query).all(...params)
+
+    // Parse tags JSON for each submission
+    const submissionsWithParsedTags = submissions.map(submission => ({
+      ...submission,
+      tags: JSON.parse(submission.tags || '[]')
+    }))
+
+    res.json({ submissions: submissionsWithParsedTags })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/**
+ * Update user submission status (approve/reject)
+ */
+export function updateSubmissionStatus(req, res, next) {
+  try {
+    const { id } = req.params
+    const { status, feedback } = req.body
+
+    // Validate status
+    if (!['approved', 'rejected'].includes(status)) {
+      return res.status(400).json({ error: "Status must be 'approved' or 'rejected'" })
+    }
+
+    // Update submission
+    const updateSubmission = db.prepare(`
+      UPDATE user_posts 
+      SET status = ?, admin_feedback = ?, updatedAt = CURRENT_TIMESTAMP 
+      WHERE id = ?
+    `)
+    
+    const result = updateSubmission.run(status, feedback || null, id)
+
+    if (result.changes === 0) {
+      return res.status(404).json({ error: "Submission not found" })
+    }
+
+    // If approved, also add to main posts table for public display
+    if (status === 'approved') {
+      const submission = db.prepare("SELECT * FROM user_posts WHERE id = ?").get(id)
+      if (submission) {
+        const insertPost = db.prepare(`
+          INSERT INTO posts (title, content, author) 
+          VALUES (?, ?, ?)
+        `)
+        insertPost.run(submission.title, submission.content, submission.author)
+      }
+    }
+
+    res.json({ 
+      message: `Submission ${status} successfully`,
+      status 
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/**
+ * Get submission details by ID
+ */
+export function getSubmissionById(req, res, next) {
+  try {
+    const { id } = req.params
+
+    const submission = db.prepare(`
+      SELECT up.*, u.email as user_email, u.name as user_name
+      FROM user_posts up 
+      JOIN users u ON up.user_id = u.id 
+      WHERE up.id = ?
+    `).get(id)
+
+    if (!submission) {
+      return res.status(404).json({ error: "Submission not found" })
+    }
+
+    // Parse tags JSON
+    submission.tags = JSON.parse(submission.tags || '[]')
+
+    res.json({ submission })
+  } catch (error) {
+    next(error)
+  }
+}
