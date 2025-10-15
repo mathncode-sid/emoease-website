@@ -274,6 +274,26 @@ header nav a.active {
   color: white;
   font-size: 3rem;
   font-weight: 700;
+  overflow: hidden;
+}
+
+.team-member-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Fallback for missing images */
+.team-member-avatar img[src*="placeholder"] {
+  display: none;
+}
+
+.team-member-avatar:has(img[src*="placeholder"]) {
+  background: #4a7ba7;
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 .team-member h3 {
