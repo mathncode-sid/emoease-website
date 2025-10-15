@@ -1,136 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post - EmoEase</title>
-    <meta name="description" content="Read this article about men's mental health and wellness from EmoEase.">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post - Men's Mental Health Blog</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                 Updated branding to EmoEase with logo 
-                <a href="index.html" class="logo">
-                    <img src="images/emoease-logo.png" alt="EmoEase Logo" class="logo-image">
-                    <span class="logo-text">EmoEase</span>
-                </a>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#mission">Our Mission</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+  <header>
+    <div class="container">
+      <h1>💙 Men's Mental Health</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article id="post-container" class="post-detail">
+      <p class="loading">Loading post...</p>
+    </article>
+    <a href="/" class="btn btn-secondary">← Back to all posts</a>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Men's Mental Health Blog. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Get post ID from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+
+    if (!postId) {
+      document.getElementById('post-container').innerHTML = '<p class="error">No post ID provided</p>';
+    } else {
+      loadPost(postId);
+    }
+
+    async function loadPost(id) {
+      try {
+        const response = await fetch(`/api/posts/${id}`);
+        
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+
+        const post = await response.json();
+        displayPost(post);
+      } catch (error) {
+        document.getElementById('post-container').innerHTML = 
+          `<p class="error">Error loading post: ${error.message}</p>`;
+      }
+    }
+
+    function displayPost(post) {
+      const container = document.getElementById('post-container');
+      const date = new Date(post.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      container.innerHTML = `
+        <h1>${escapeHtml(post.title)}</h1>
+        <div class="post-meta">
+          <span class="author">By ${escapeHtml(post.author)}</span>
+          <span class="date">${date}</span>
         </div>
-    </header>
+        <div class="post-content">${escapeHtml(post.content).replace(/\n/g, '<br>')}</div>
+      `;
+    }
 
-    <main class="main-content">
-        <div class="container">
-            <div style="margin-bottom: var(--spacing-lg);">
-                <a href="blog.html" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">
-                    ← Back to Blog
-                </a>
-            </div>
-
-            <article id="postContent">
-                <div class="loading" style="margin: var(--spacing-lg) auto;"></div>
-            </article>
-        </div>
-    </main>
-
-     Updated footer with EmoEase branding 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <h3 class="footer-title">EmoEase</h3>
-                <p>Your Health, Your Wealth</p>
-                <p style="margin-top: var(--spacing-sm);">Breaking the silence, building support, creating change.</p>
-                <p style="margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
-                    &copy; 2025 EmoEase. All rights reserved. Built and maintained by <a href="https://github.com/mathncode-sid" target="_blank" rel="noopener noreferrer">Sidney B.</a>.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get('id');
-            
-            if (postId) {
-                loadPost(postId);
-            } else {
-                document.getElementById('postContent').innerHTML = 
-                    '<p style="color: var(--color-text-secondary); text-align: center;">Post not found.</p>';
-            }
-        });
-
-        async function loadPost(id) {
-            try {
-                const response = await fetch(`/api/posts/${id}`);
-                const result = await response.json();
-
-                if (result.success) {
-                    displayPost(result.data.post);
-                } else {
-                    document.getElementById('postContent').innerHTML = 
-                        '<p style="color: var(--color-text-secondary); text-align: center;">Post not found.</p>';
-                }
-            } catch (error) {
-                console.error('Load post error:', error);
-                document.getElementById('postContent').innerHTML = 
-                    '<p style="color: var(--color-text-secondary); text-align: center;">Error loading post.</p>';
-            }
-        }
-
-        function displayPost(post) {
-            document.title = `${post.title} - EmoEase`;
-            
-            const container = document.getElementById('postContent');
-            container.innerHTML = `
-                <header class="post-header">
-                    <h1 class="post-title">${escapeHtml(post.title)}</h1>
-                    <div class="post-meta">
-                        By ${escapeHtml(post.author)} • ${formatDate(post.created_at)}
-                        ${post.updated_at !== post.created_at ? ` • Updated ${formatDate(post.updated_at)}` : ''}
-                    </div>
-                </header>
-                
-                <div class="post-content">
-                    ${formatPostContent(post.content)}
-                </div>
-            `;
-        }
-
-        function formatPostContent(content) {
-            // Simple formatting: convert line breaks to paragraphs
-            return content
-                .split('\n\n')
-                .map(paragraph => paragraph.trim())
-                .filter(paragraph => paragraph.length > 0)
-                .map(paragraph => `<p>${escapeHtml(paragraph)}</p>`)
-                .join('');
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    </script>
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
 </body>
 </html>

@@ -1,187 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmoEase - Your Health, Your Wealth</title>
-    <meta name="description" content="EmoEase is dedicated to empowering young men ages 15-35 by fostering holistic wellness, breaking societal barriers, and building meaningful connections.">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men's Mental Health Blog</title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Updated navigation to include separate pages -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <img src="images/emoease-logo.png" alt="EmoEase Logo" class="logo-image">
-                    <span class="logo-text">EmoEase</span>
-                </a>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <header>
+    <div class="container">
+      <h1>💙 Men's Mental Health</h1>
+      <p class="tagline">Breaking the silence, building strength</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/admin.html">Admin Login</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Simplified hero section for landing page -->
+  <main class="container">
     <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">Your Health, Your Wealth</h1>
-            <p class="hero-subtitle">
-                EmoEase is dedicated to empowering young men ages 15-35 by fostering holistic wellness, 
-                breaking societal barriers, and building meaningful connections.
-            </p>
-            <div class="flex justify-center gap-lg">
-                <a href="about.html" class="btn btn-primary">Learn More</a>
-                <a href="blog.html" class="btn btn-secondary">Read Our Blog</a>
-            </div>
-        </div>
+      <h2>Our Blog</h2>
+      <p>Read stories, insights, and resources about men's mental health</p>
     </section>
 
-    <main class="main-content">
-        <div class="container">
-            <!-- Added brief mission overview for landing page -->
-            <section id="mission-overview">
-                <h2 class="section-title">Our Mission</h2>
-                <div class="mission-content">
-                    <p class="mission-intro">
-                        EmoEase is dedicated to empowering young men ages 15-35 by:
-                    </p>
-                    <ul class="mission-list">
-                        <li>Fostering holistic wellness</li>
-                        <li>Breaking societal barriers</li>
-                        <li>Building meaningful connections</li>
-                    </ul>
-                    <p class="mission-description">
-                        We offer a comprehensive program focused on breaking down the stigma surrounding men's mental health 
-                        and providing resources to help men manage stress, anxiety, and other mental health challenges.
-                    </p>
-                    <div class="text-center" style="margin-top: var(--spacing-xl);">
-                        <a href="about.html" class="btn btn-primary">Discover Our Story</a>
-                    </div>
-                </div>
-            </section>
+    <div id="posts-container" class="posts-grid">
+      <p class="loading">Loading posts...</p>
+    </div>
+  </main>
 
-            <!-- Latest blog posts section remains -->
-            <section id="latest-posts" style="margin-top: var(--spacing-3xl);">
-                <h2 class="section-title">Latest Articles</h2>
-                <p class="section-subtitle">
-                    Insights, stories, and resources to support men's mental health journey
-                </p>
-                
-                <div id="latestPosts" class="posts-grid">
-                    <div class="loading" style="margin: var(--spacing-lg) auto;"></div>
-                </div>
-                
-                <div class="text-center">
-                    <a href="blog.html" class="btn btn-primary">View All Articles</a>
-                </div>
-            </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Men's Mental Health Blog. All rights reserved.</p>
+      <p>If you're struggling, reach out. You're not alone.</p>
+    </div>
+  </footer>
 
-            <!-- Added call-to-action section -->
-            <section id="cta" style="margin-top: var(--spacing-3xl);">
-                <div style="background-color: var(--color-accent-light); padding: var(--spacing-3xl); border-radius: var(--radius-xl); text-align: center;">
-                    <h2 class="section-title" style="margin-bottom: var(--spacing-lg);">Ready to Make a Difference?</h2>
-                    <p style="font-size: var(--font-size-lg); color: var(--color-text-secondary); margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Join us in breaking the stigma around men's mental health. Whether you want to partner with us, 
-                        join our community, or simply learn more, we'd love to hear from you.
-                    </p>
-                    <div class="flex justify-center gap-lg">
-                        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
-                        <a href="team.html" class="btn btn-secondary">Meet Our Team</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <h3 class="footer-title">EmoEase</h3>
-                <p>Your Health, Your Wealth</p>
-                <p style="margin-top: var(--spacing-sm);">Breaking the silence, building support, creating change.</p>
-                <p style="margin-top: var(--spacing-md); font-size: var(--font-size-sm);">
-                    &copy; 2025 EmoEase. All rights reserved. Built and maintained by <a href="https://github.com/mathncode-sid" target="_blank" rel="noopener noreferrer">Sidney B.</a>.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            loadLatestPosts();
-        });
-
-        async function loadLatestPosts() {
-            try {
-                const response = await fetch('/api/posts');
-                const result = await response.json();
-
-                if (result.success) {
-                    const posts = result.data.posts.slice(0, 3); // Show latest 3 posts
-                    displayLatestPosts(posts);
-                } else {
-                    document.getElementById('latestPosts').innerHTML = 
-                        '<p style="color: var(--color-text-secondary); text-align: center;">No articles available yet.</p>';
-                }
-            } catch (error) {
-                console.error('Load posts error:', error);
-                document.getElementById('latestPosts').innerHTML = 
-                    '<p style="color: var(--color-text-secondary); text-align: center;">Error loading articles.</p>';
-            }
-        }
-
-        function displayLatestPosts(posts) {
-            const container = document.getElementById('latestPosts');
-            
-            if (posts.length === 0) {
-                container.innerHTML = '<p style="color: var(--color-text-secondary); text-align: center;">No articles available yet.</p>';
-                return;
-            }
-
-            const postsHTML = posts.map(post => `
-                <article class="card">
-                    <h3 class="card-title">
-                        <a href="post.html?id=${post.id}" style="color: inherit; text-decoration: none;">
-                            ${escapeHtml(post.title)}
-                        </a>
-                    </h3>
-                    <div class="card-meta">
-                        By ${escapeHtml(post.author)} • ${formatDate(post.created_at)}
-                    </div>
-                    <div class="card-content">
-                        <p>${escapeHtml(post.content.substring(0, 200))}${post.content.length > 200 ? '...' : ''}</p>
-                        <a href="post.html?id=${post.id}" class="btn btn-secondary" style="margin-top: var(--spacing-md);">
-                            Read More
-                        </a>
-                    </div>
-                </article>
-            `).join('');
-
-            container.innerHTML = postsHTML;
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-    </script>
+  <script src="/js/posts.js"></script>
 </body>
 </html>
