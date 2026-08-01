@@ -15,7 +15,7 @@ export function TestimonialsSection({ items }: TestimonialsSectionProps) {
           id="testimonials-heading"
           eyebrow="Our approach"
           title="What men should feel when they meet EmoEase."
-          description="Before stories and impact reports are published, the landing page should still be clear about the standard of care EmoEase is building toward."
+          description="These are the commitments behind every check-in, webinar, event, and conversation in the EmoEase community."
         />
 
         <div className="mt-10 grid gap-5 lg:grid-cols-3">

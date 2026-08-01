@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Rustico";
+  src: url("/font/Rustico.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+}
+
+:root {
+  --background: 44 35% 97%;
+  --foreground: 215 28% 17%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 28% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 28% 17%;
+  --primary: 210 55% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 160 42% 34%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 43 22% 94%;
+  --muted-foreground: 215 12% 44%;
+  --accent: 160 25% 92%;
+  --accent-foreground: 160 34% 24%;
+  --border: 216 18% 86%;
+  --input: 216 18% 86%;
+  --ring: 211 61% 39%;
+  --radius: 1rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+::selection {
+  background: rgba(33, 99, 172, 0.12);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-normal;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

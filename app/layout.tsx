@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 
 import "./globals.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -16,12 +22,14 @@ export const metadata: Metadata = {
     template: "%s | EmoEase",
   },
   description:
-    "EmoEase supports men's mental health through education, peer support, community engagement, and trusted resources.",
+    "EmoEase is a Kenyan online safe space supporting men's mental health through honest conversations, community, practical resources, and trusted referrals.",
   keywords: [
     "mens mental health",
     "peer support",
     "mental health resources",
     "community wellness",
+    "Kenya",
+    "Nairobi",
     "EmoEase",
   ],
   alternates: {
@@ -30,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EmoEase",
     description:
-      "A calm, trustworthy landing page for men's mental health support, education, and community care.",
+      "A Kenyan community for men's mental health, honest conversations, practical support, and connection.",
     url: "/",
     siteName: "EmoEase",
     images: [
@@ -41,7 +49,7 @@ export const metadata: Metadata = {
         alt: "EmoEase hero artwork showing a supportive community scene",
       },
     ],
-    locale: "en_US",
+    locale: "en_KE",
     type: "website",
   },
   twitter: {
@@ -55,7 +63,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} scroll-smooth`}>
+    <html lang="en" className={`${manrope.variable} ${spaceGrotesk.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <a
           href="#main-content"

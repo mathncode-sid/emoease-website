@@ -33,93 +33,89 @@ export const navigationItems: NavigationItem[] = [
 ];
 
 export const heroContent: HeroContent = {
-  eyebrow: "Men's mental health, without the performance",
-  title: "Support circle for men",
+  eyebrow: "A Kenyan community for men's mental health",
+  title: "You do not have to carry it alone.",
   description:
-    "EmoEase helps men talk honestly, find practical mental health resources, and stay connected to people who understand the pressure of carrying too much alone.",
-  primaryAction: { label: "Get Support", href: "#support" },
-  secondaryAction: { label: "Explore Programs", href: "#programs" },
+    "EmoEase is an online safe space where men can share, unpack, and express themselves freely without judgement. Join a community that listens, learns, and walks with you through real life in Kenya.",
+  primaryAction: { label: "Talk to us on WhatsApp", href: "https://wa.me/254116745520" },
+  secondaryAction: { label: "Explore our community", href: "#programs" },
   image: {
     src: "/images/emoease-hero.png",
     alt: "EmoEase support circle for men artwork",
   },
-  supportNote: "Start with a conversation, a resource, or a community circle. No pressure to have the right words.",
+  supportNote: "Start with a conversation. You do not need the perfect words, and you do not need to be in crisis to reach out.",
 };
 
 export const featureItems: FeatureItem[] = [
   {
-    title: "Brotherhood",
+    title: "Seen and heard",
     description:
-      "Support spaces where men can speak plainly about pressure, identity, grief, relationships, work, and responsibility.",
+      "A respectful space where men can speak plainly about pressure, identity, grief, relationships, work, and responsibility without judgement.",
     icon: ShieldCheck,
   },
   {
-    title: "Practical Tools",
+    title: "Small steps that help",
     description:
-      "Clear guidance for stress, low mood, anger, anxiety, burnout, and the everyday habits that keep men grounded.",
+      "Grounded conversations and practical ideas for stress, low mood, anger, anxiety, burnout, and the everyday habits that keep you steady.",
     icon: BookUser,
   },
   {
-    title: "Steady Support",
+    title: "Community that follows through",
     description:
-      "Peer circles, workshops, and outreach designed to keep support close before a difficult week becomes a crisis.",
+      "Check-ins, webinars, events, and links to caring professionals so support does not end after one conversation.",
     icon: HeartHandshake,
   },
 ];
 
 export const statisticItems: StatisticItem[] = [
   {
-    value: "4x",
-    label: "higher suicide rate among males than females in the United States in 2024.",
-    note: "Source: CDC suicide data",
-    sourceHref: "https://www.cdc.gov/suicide/data/index.html",
+    value: "Free",
+    label: "online community space where you can share, learn, and grow together.",
+    note: "Open to men in Kenya",
   },
   {
-    value: "727k",
-    label: "people die by suicide globally each year, with many more suicide attempts affecting families and communities.",
-    note: "Source: WHO suicide fact sheet",
-    sourceHref: "https://www.who.int/news-room/fact-sheets/detail/suicide",
+    value: "Weekly",
+    label: "prompts, check-ins, and practical conversations to help you pause and reflect.",
+    note: "Wellness Wednesday",
   },
   {
-    value: "17.8%",
-    label: "of U.S. men ages 18-44 received mental health treatment in 2021, compared with 28.6% of women.",
-    note: "Source: CDC NCHS data brief",
-    sourceHref: "https://www.cdc.gov/nchs/products/databriefs/db444.htm",
+    value: "Real",
+    label: "conversations about the pressure men face at home, at work, in relationships, and in society.",
+    note: "No performance required",
   },
   {
-    value: "Men",
-    label: "can experience depression, anxiety, PTSD, substance use, ADHD, and other mental health conditions, even when symptoms look different.",
-    note: "Source: NIMH men's mental health",
-    sourceHref: "https://www.nimh.nih.gov/health/topics/men-and-mental-health",
+    value: "Kenya",
+    label: "rooted in local community, with online and in-person ways to connect when possible.",
+    note: "From Nairobi and beyond",
   },
 ];
 
 export const programItems: ProgramItem[] = [
   {
-    title: "Peer Support Circles",
+    title: "Wellness Wednesday",
     description:
-      "Small, guided conversations where men can talk straight, listen well, and leave with a clearer next step.",
+      "Regular online prompts and check-ins that make space for men to say how the week is really going, one day at a time.",
     href: "#support",
     icon: MessageSquareText,
   },
   {
-    title: "Wellness Workshops",
+    title: "Webinars and conversations",
     description:
-      "Practical sessions on stress, emotional regulation, communication, relationships, money pressure, and habits that hold up in real life.",
+      "Accessible sessions on emotional resilience, masculinity, relationships, pressure, and the issues men are facing on the ground.",
     href: "#support",
     icon: HeartPulse,
   },
   {
-    title: "Awareness Campaigns",
+    title: "Mental health walks and events",
     description:
-      "Community campaigns that make it normal for men to talk about pressure, pain, and help-seeking before things get worse.",
+      "In-person gatherings that bring conversation, movement, creativity, education, and community care together.",
     href: "#support",
     icon: Megaphone,
   },
   {
-    title: "Community Outreach",
+    title: "Referral and follow-through",
     description:
-      "Partnerships with workplaces, campuses, faith groups, and local communities that want men to stay connected and supported.",
+      "A listening first step, followed by links to caring professionals and other support when a situation needs more help.",
     href: "#support",
     icon: UsersRound,
   },
@@ -127,38 +123,38 @@ export const programItems: ProgramItem[] = [
 
 export const resourceItems: ResourceItem[] = [
   {
-    title: "Anxiety",
-    description: "Grounding techniques, warning signs, and ways to steady yourself when worry, fear, or panic rises.",
+    title: "Pressure and expectations",
+    description: "Conversations about the weight of being a provider, partner, son, father, student, or the person everyone relies on.",
     href: "#support",
     icon: Brain,
   },
   {
-    title: "Depression",
-    description: "Guidance for recognizing low mood, numbness, fatigue, isolation, irritability, and when it is time to reach out.",
+    title: "Stress and low mood",
+    description: "Practical language for low mood, numbness, fatigue, isolation, irritability, and knowing when to reach out.",
     href: "#support",
     icon: HeartPulse,
   },
   {
-    title: "Stress",
-    description: "Tools for work strain, overload, family pressure, money stress, and the load that keeps stacking up.",
+    title: "Work, money, and school fees",
+    description: "A place to unpack work strain, unemployment, business pressure, family needs, and the costs that keep stacking up.",
     href: "#support",
     icon: Thermometer,
   },
   {
-    title: "Relationships",
-    description: "Support for communication, conflict, boundaries, repair, and showing up with more clarity.",
+    title: "Relationships and fatherhood",
+    description: "Support for communication, conflict, boundaries, repair, parenting, and showing up with more clarity.",
     href: "#support",
     icon: HeartHandshake,
   },
   {
-    title: "Fatherhood",
-    description: "Resources for men navigating identity, responsibility, emotional presence, and care at home.",
+    title: "Finding your people",
+    description: "Why community matters, how to start a conversation, and how to keep showing up when life feels heavy.",
     href: "#support",
     icon: CircleUserRound,
   },
   {
-    title: "Workplace Mental Health",
-    description: "Practical support for burnout, leadership pressure, workplace conflict, and staying grounded at work.",
+    title: "When it feels urgent",
+    description: "A clear reminder of when to contact a trusted person, caring professional, or emergency service immediately.",
     href: "#support",
     icon: BriefcaseBusiness,
   },
@@ -189,13 +185,13 @@ export const testimonialItems: TestimonialItem[] = [
 ];
 
 export const ctaContent: CtaContent = {
-  eyebrow: "Take the next step",
-  title: "You do not have to muscle through it alone.",
+  eyebrow: "Start with a conversation",
+  title: "Uko safe kuongea hapa.",
   description:
-    "Reach out to EmoEase, ask about a support circle, invite us to your community, or begin with the resource category that matches what you are facing today.",
-  primaryAction: { label: "Email EmoEase", href: "mailto:emoease23@gmail.com" },
-  secondaryAction: { label: "Call EmoEase", href: "tel:+25416745520" },
-  supportNote: "If someone may be in immediate danger, contact local emergency services right away. EmoEase does not replace emergency care or licensed clinical treatment.",
+    "Whether you are in Nairobi or elsewhere in Kenya, you can reach out to ask a question, join the community, learn about an upcoming webinar or event, or simply say how things have been.",
+  primaryAction: { label: "Message us on WhatsApp", href: "https://wa.me/254116745520" },
+  secondaryAction: { label: "Email EmoEase", href: "mailto:emoease23@gmail.com" },
+  supportNote: "We listen without judgement. EmoEase is a community and referral space, not a replacement for emergency care or licensed clinical treatment. If someone is in immediate danger, contact local emergency services now.",
 };
 
 export const footerLinkGroups: FooterLinkGroup[] = [
@@ -221,7 +217,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     title: "Contact",
     links: [
       { label: "emoease23@gmail.com", href: "mailto:emoease23@gmail.com" },
-      { label: "+254 167 45520", href: "tel:+25416745520" },
+      { label: "+254 116 745520", href: "tel:+254116745520" },
       { label: "Support section", href: "#support" },
     ],
   },
@@ -229,6 +225,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
 
 export const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/emoea.se" },
+  { label: "TikTok", href: "https://www.tiktok.com/@emoease" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/emo-ease-10981637b/" },
   { label: "YouTube", href: "https://www.youtube.com/@EmoEase-23" },
 ];

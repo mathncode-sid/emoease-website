@@ -15,7 +15,7 @@ export function StatisticsSection({ items }: StatisticsSectionProps) {
           id="statistics-heading"
           eyebrow="Why this matters"
           title="Men's mental health needs earlier, easier doors into support."
-          description="The data points to a serious gap: many men are in pain, but fewer reach care early. EmoEase exists to make that first step feel human, practical, and close."
+          description="EmoEase is building a support culture that feels human, practical, and close to everyday life in Kenya."
         />
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">

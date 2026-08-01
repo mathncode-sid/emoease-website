@@ -6,7 +6,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-manrope)", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["var(--font-manrope)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Rustico", "Impact", "var(--font-space-grotesk)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
         soft: "0 12px 30px rgba(15, 23, 42, 0.06)",
