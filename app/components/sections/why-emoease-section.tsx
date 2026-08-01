@@ -9,7 +9,7 @@ type WhyEmoEaseSectionProps = {
 
 export function WhyEmoEaseSection({ items }: WhyEmoEaseSectionProps) {
   return (
-    <section id="why-emoease" className="py-16 sm:py-20 lg:py-24">
+    <section id="why-emoease" className="bg-[#e8f0ed] py-20 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading
           id="why-emoease-heading"
@@ -18,7 +18,7 @@ export function WhyEmoEaseSection({ items }: WhyEmoEaseSectionProps) {
           description="EmoEase is built around brotherhood, practical support, and the idea that strength includes speaking up when the load gets heavy."
         />
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-14 grid gap-0 border-y border-foreground/15 md:grid-cols-3">
           {items.map((item) => (
             <FeatureCard key={item.title} icon={item.icon} title={item.title} description={item.description} />
           ))}

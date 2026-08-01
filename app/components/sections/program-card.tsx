@@ -16,14 +16,14 @@ export function ProgramCard({ icon: Icon, title, description, href, className }:
   return (
     <article
       className={cn(
-        "group rounded-[var(--radius)] border border-border/70 bg-card p-6 shadow-soft transition-transform duration-200 hover:-translate-y-0.5",
+        "group border-t border-border/80 px-0 py-7 transition-colors duration-200 hover:border-secondary sm:px-2",
         className
       )}
     >
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary/12 text-secondary">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-secondary/40 text-secondary">
         <Icon className="h-5 w-5" aria-hidden="true" />
       </div>
-      <h3 className="mt-5 text-xl font-semibold text-foreground">{title}</h3>
+      <h3 className="mt-5 font-display text-2xl font-semibold text-foreground">{title}</h3>
       <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{description}</p>
       <Link
         href={href}

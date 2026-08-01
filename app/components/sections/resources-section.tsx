@@ -9,7 +9,7 @@ type ResourcesSectionProps = {
 
 export function ResourcesSection({ items }: ResourcesSectionProps) {
   return (
-    <section id="resources" className="py-16 sm:py-20 lg:py-24">
+    <section id="resources" className="bg-[#f3efe7] py-20 sm:py-24 lg:py-32">
       <Container>
         <SectionHeading
           id="resources-heading"

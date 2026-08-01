@@ -15,14 +15,14 @@ export function CtaSection({ content }: CtaSectionProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="support" className="py-16 sm:py-20 lg:py-24">
+    <section id="support" className="bg-[#e8f0ed] py-20 sm:py-24 lg:py-32">
       <Container>
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
-          className="rounded-[1.5rem] border border-border/70 bg-white p-6 shadow-soft sm:p-8 lg:p-12"
+          className="border-y border-foreground/20 py-2 sm:py-4"
         >
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">{content.eyebrow}</p>
