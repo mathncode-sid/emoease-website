@@ -3,3 +3,10 @@ node_modules/
 node_modules
 package-lock.json
 data/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+.next-dev.*.log
+.agents/
+Microsoft/Windows/PowerShell/ModuleAnalysisCache
