@@ -25,11 +25,13 @@ import type {
 } from "@/types/landing";
 
 export const navigationItems: NavigationItem[] = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#why-emoease" },
-  { label: "Programs", href: "#programs" },
-  { label: "Resources", href: "#resources" },
-  { label: "Contact", href: "#support" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Community", href: "/community" },
+  { label: "Events", href: "/events" },
+  { label: "Resources", href: "/resources" },
+  { label: "Contact", href: "/support" },
 ];
 
 export const heroContent: HeroContent = {
@@ -95,28 +97,28 @@ export const programItems: ProgramItem[] = [
     title: "Wellness Wednesday",
     description:
       "Regular online prompts and check-ins that make space for men to say how the week is really going, one day at a time.",
-    href: "#support",
+    href: "/programs",
     icon: MessageSquareText,
   },
   {
     title: "Webinars and conversations",
     description:
       "Accessible sessions on emotional resilience, masculinity, relationships, pressure, and the issues men are facing on the ground.",
-    href: "#support",
+    href: "/programs",
     icon: HeartPulse,
   },
   {
     title: "Mental health walks and events",
     description:
       "In-person gatherings that bring conversation, movement, creativity, education, and community care together.",
-    href: "#support",
+    href: "/programs",
     icon: Megaphone,
   },
   {
     title: "Referral and follow-through",
     description:
       "A listening first step, followed by links to caring professionals and other support when a situation needs more help.",
-    href: "#support",
+    href: "/find-a-therapist",
     icon: UsersRound,
   },
 ];
@@ -125,37 +127,37 @@ export const resourceItems: ResourceItem[] = [
   {
     title: "Pressure and expectations",
     description: "Conversations about the weight of being a provider, partner, son, father, student, or the person everyone relies on.",
-    href: "#support",
+    href: "/resources/pressure-expectations",
     icon: Brain,
   },
   {
     title: "Stress and low mood",
     description: "Practical language for low mood, numbness, fatigue, isolation, irritability, and knowing when to reach out.",
-    href: "#support",
+    href: "/resources/stress-low-mood",
     icon: HeartPulse,
   },
   {
     title: "Work, money, and school fees",
     description: "A place to unpack work strain, unemployment, business pressure, family needs, and the costs that keep stacking up.",
-    href: "#support",
+    href: "/resources",
     icon: Thermometer,
   },
   {
     title: "Relationships and fatherhood",
     description: "Support for communication, conflict, boundaries, repair, parenting, and showing up with more clarity.",
-    href: "#support",
+    href: "/resources/relationships-fatherhood",
     icon: HeartHandshake,
   },
   {
     title: "Finding your people",
     description: "Why community matters, how to start a conversation, and how to keep showing up when life feels heavy.",
-    href: "#support",
+    href: "/resources",
     icon: CircleUserRound,
   },
   {
     title: "When it feels urgent",
     description: "A clear reminder of when to contact a trusted person, caring professional, or emergency service immediately.",
-    href: "#support",
+    href: "/resources/when-it-feels-urgent",
     icon: BriefcaseBusiness,
   },
 ];
@@ -198,19 +200,21 @@ export const footerLinkGroups: FooterLinkGroup[] = [
   {
     title: "Quick Links",
     links: [
-      { label: "Home", href: "#top" },
-      { label: "About", href: "#why-emoease" },
-      { label: "Programs", href: "#programs" },
-      { label: "Resources", href: "#resources" },
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about" },
+      { label: "Programs", href: "/programs" },
+      { label: "Community", href: "/community" },
+      { label: "Events", href: "/events" },
+      { label: "Resources", href: "/resources" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Anxiety", href: "#resources" },
-      { label: "Depression", href: "#resources" },
-      { label: "Stress", href: "#resources" },
-      { label: "Workplace Mental Health", href: "#resources" },
+      { label: "Anxiety", href: "/resources" },
+      { label: "Depression", href: "/resources" },
+      { label: "Stress", href: "/resources" },
+      { label: "Workplace Mental Health", href: "/resources" },
     ],
   },
   {
@@ -218,7 +222,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { label: "emoease23@gmail.com", href: "mailto:emoease23@gmail.com" },
       { label: "+254 116 745520", href: "tel:+254116745520" },
-      { label: "Support section", href: "#support" },
+      { label: "Find a therapist", href: "/find-a-therapist" },
     ],
   },
 ];
