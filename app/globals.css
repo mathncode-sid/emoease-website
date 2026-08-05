@@ -11,23 +11,24 @@
 }
 
 :root {
-  --background: 44 35% 97%;
-  --foreground: 215 28% 17%;
+  /* EmoEase brand: #48749f, black, white, and #a6a6a6. */
+  --background: 210 33% 98%;
+  --foreground: 0 0% 0%;
   --card: 0 0% 100%;
-  --card-foreground: 215 28% 17%;
+  --card-foreground: 0 0% 0%;
   --popover: 0 0% 100%;
-  --popover-foreground: 215 28% 17%;
-  --primary: 210 55% 38%;
+  --popover-foreground: 0 0% 0%;
+  --primary: 218 38% 45%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 160 42% 34%;
+  --secondary: 166 34% 42%;
   --secondary-foreground: 0 0% 100%;
-  --muted: 43 22% 94%;
-  --muted-foreground: 215 12% 44%;
-  --accent: 160 25% 92%;
-  --accent-foreground: 160 34% 24%;
-  --border: 216 18% 86%;
-  --input: 216 18% 86%;
-  --ring: 211 61% 39%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 42%;
+  --accent: 208 43% 94%;
+  --accent-foreground: 218 38% 28%;
+  --border: 0 0% 82%;
+  --input: 0 0% 72%;
+  --ring: 218 38% 45%;
   --radius: 1rem;
 }
 
@@ -42,7 +43,7 @@ body {
 }
 
 ::selection {
-  background: rgba(33, 99, 172, 0.12);
+  background: rgba(72, 116, 159, 0.22);
 }
 
 @layer base {

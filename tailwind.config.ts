@@ -9,7 +9,7 @@ const config: Config = {
         display: ["Rustico", "Impact", "var(--font-space-grotesk)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 12px 30px rgba(15, 23, 42, 0.06)",
+        soft: "0 12px 30px rgba(0, 0, 0, 0.07)",
       },
       borderRadius: {
         "4xl": "1rem",
