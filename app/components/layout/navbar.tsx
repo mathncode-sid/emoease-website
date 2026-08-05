@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, ShieldAlert, X } from "lucide-react";
 
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import type { NavigationItem } from "@/types/landing";
@@ -27,12 +27,12 @@ export function Navbar({ items, supportHref }: NavbarProps) {
 
   return (
     <header id="top" className="sticky top-0 z-50 border-b border-border/70 bg-background/95">
-      <Container className="flex items-center justify-between py-4 sm:py-5">
+      <Container className="flex items-center justify-between py-3 sm:py-4">
         <Link href="#top" aria-label="EmoEase home" className="flex items-center rounded-xl px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-          <Image src="/images/emoease-logo.png" alt="EmoEase" width={86} height={58} priority className="h-[58px] w-[86px] object-contain" />
+          <Image src="/images/emoease-logo.png" alt="EmoEase" width={120} height={76} priority className="h-[68px] w-[108px] object-contain sm:h-[76px] sm:w-[120px]" />
         </Link>
 
-        <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-1 xl:flex">
           {items.map((item) => (
             <Link
               key={item.label}
@@ -44,12 +44,16 @@ export function Navbar({ items, supportHref }: NavbarProps) {
               {item.label}
             </Link>
           ))}
+          <Link href="/get-help-now" className="ml-2 inline-flex items-center gap-1.5 rounded-xl bg-red-700 px-3 py-2 text-sm font-bold text-white hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-700 focus-visible:ring-offset-2">
+            <ShieldAlert className="h-4 w-4" aria-hidden="true" />
+            Get Help Now
+          </Link>
           <Button asChild size="sm" className="ml-3">
             <Link href={supportHref}>Get Support</Link>
           </Button>
         </nav>
 
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <Button
             type="button"
             variant="outline"
@@ -67,7 +71,7 @@ export function Navbar({ items, supportHref }: NavbarProps) {
 
       <div
         id="mobile-navigation"
-        className={cn("border-t border-border/70 bg-background lg:hidden", isOpen ? "block" : "hidden")}
+        className={cn("border-t border-border/70 bg-background xl:hidden", isOpen ? "block" : "hidden")}
       >
         <Container className="flex flex-col gap-2 py-4">
           {items.map((item) => (
@@ -83,6 +87,10 @@ export function Navbar({ items, supportHref }: NavbarProps) {
           <Button asChild className="mt-2 w-full" onClick={closeMenu}>
             <Link href={supportHref}>Get Support</Link>
           </Button>
+          <Link href="/get-help-now" onClick={closeMenu} className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-red-700 px-5 text-sm font-bold text-white hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-700 focus-visible:ring-offset-2">
+            <ShieldAlert className="h-4 w-4" aria-hidden="true" />
+            Get Help Now
+          </Link>
         </Container>
       </div>
     </header>

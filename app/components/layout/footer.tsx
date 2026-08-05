@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Container } from "@/components/layout/container";
+import { SocialIcon } from "@/components/ui/social-icon";
 import type { FooterLinkGroup } from "@/types/landing";
 
 type FooterProps = {
@@ -21,23 +22,28 @@ export function Footer({ linkGroups, socialLinks, utilityLinks }: FooterProps) {
               aria-label="EmoEase home"
               className="inline-flex rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              <Image src="/images/emoease-logo.png" alt="EmoEase" width={112} height={76} className="h-[76px] w-28 object-contain" />
+              <Image src="/images/emoease-logo.png" alt="EmoEase" width={148} height={96} className="h-20 w-32 object-contain sm:h-24 sm:w-36" />
             </Link>
             <p className="max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
               Supporting men&apos;s mental health through education, peer support, trusted resources, and community
               engagement.
             </p>
+            <Link href="/get-help-now" className="inline-flex w-fit items-center rounded-lg bg-red-700 px-4 py-2 text-sm font-bold text-white hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-700 focus-visible:ring-offset-2">
+              Get Help Now
+            </Link>
 
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((socialLink) => (
                 <a
                   key={socialLink.label}
                   href={socialLink.href}
-                  className="rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={`Visit EmoEase on ${socialLink.label}`}
+                  title={socialLink.label}
                 >
-                  {socialLink.label}
+                  <SocialIcon label={socialLink.label} />
                 </a>
               ))}
             </div>
