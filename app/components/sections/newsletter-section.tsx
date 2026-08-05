@@ -18,11 +18,16 @@ export function NewsletterSection({ eyebrow, title, description }: NewsletterSec
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const email = String(form.get("email") || "").trim();
+    const subject = encodeURIComponent("EmoEase newsletter subscription");
+    const body = encodeURIComponent(`Please add ${email} to the EmoEase newsletter.`);
+    window.location.href = `mailto:emoease23@gmail.com?subject=${subject}&body=${body}`;
     setIsSubmitted(true);
   }
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24">
+    <section id="newsletter" className="py-16 sm:py-20 lg:py-24">
       <Container>
         <div className="grid gap-8 rounded-[1.5rem] border border-border/70 bg-white p-6 shadow-soft md:p-10 lg:grid-cols-[1fr_0.85fr] lg:p-12">
           <div className="max-w-2xl">
@@ -50,8 +55,8 @@ export function NewsletterSection({ eyebrow, title, description }: NewsletterSec
 
             <p className={cn("text-sm text-muted-foreground", isSubmitted && "text-secondary")} aria-live="polite">
               {isSubmitted
-                ? "Thanks for subscribing. This frontend-only form currently confirms locally and will later connect to a mailing service."
-                : "Frontend only for now. No backend or email provider is wired up yet."}
+                ? "Your email app is opening with a subscription request. Send the message to join the list."
+                : "This opens your email app with a ready-to-send subscription request. We will only use your email for EmoEase updates."}
             </p>
           </form>
         </div>
